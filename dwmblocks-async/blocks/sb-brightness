@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+brightness() {
+  printf "^c$yellow^"
+  bright=$(xbacklight | awk '{print substr($0,1)}' | cut -d'.' -f 1)
+  printf "^c$yellow^%.0f\n" $bright 
+}
+
+echo "$(brightness)"

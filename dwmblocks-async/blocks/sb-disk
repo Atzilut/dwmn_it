@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+disk() {
+  printf "^c$teal^"
+  printf '%s\n' "^c$teal^$(df | grep "/$" | awk '{ print $5 }' | sed s/%//g)%"
+}
+
+echo "$(disk)"

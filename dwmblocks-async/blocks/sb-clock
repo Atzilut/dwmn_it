@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+clock() {
+	printf "^c$glacier^󱑆"
+	printf "^c$glacier^$(date '+%H:%M%P')"
+}
+
+echo "$(clock)"

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+cal() {
+  printf "^c$white^"
+  printf "^c$white^$(date '+%D')"
+}
+
+echo "$(cal)"

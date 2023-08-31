@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+pkg_updates() {
+   updates=$(cat /var/lib/update-notifier/updates-available | grep "updates can be applied immediately" | awk '{print $1}')  # apt (ubuntu, debian etc)
+
+  if [ $updates == 0 ]; then
+    printf "^c$white^󰏖"
+  else
+    printf "^c$white^$updates"
+  fi
+}
+
+echo "$(pkg_updates)"

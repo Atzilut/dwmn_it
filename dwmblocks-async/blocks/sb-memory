@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+mem() {
+  printf "^c$purple^"
+  printf "^c$purple^$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)b"
+}
+
+echo "$(mem)"

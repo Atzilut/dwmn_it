@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+
+
+vol() {
+  mute_val=$(pulsemixer --get-mute)
+  vol_val=$(pulsemixer --get-volume | awk '{ print $1 }') 
+  if [[   $mute_val == 1 ]] ; then
+    printf "^$white^󰖁"
+  elif [[   $mute_val == 0 ]]; then
+    if  (( $vol_val >= 50 )); then
+      printf "^$white^󰕾"
+      printf '%s\n' "^c$white^$(pulsemixer --get-volume | awk '{ print $1 }')%" 
+    elif (( $vol_val < 50 )) && (( $vol_val >= 30 )); then
+      printf "^$white^󰖀"
+      printf '%s\n' "^c$white^$(pulsemixer --get-volume | awk '{ print $1 }')%" 
+    elif (( $vol_val < 30 )) && (( $vol_val > 0 )); then
+      printf "^$white^󰕿"
+      printf '%s\n' "^c$white^$(pulsemixer --get-volume | awk '{ print $1 }')%" 
+    else
+      printf "?"
+    fi
+  else
+    printf "idk mute"
+  fi
+}
+
+echo "$(vol)"

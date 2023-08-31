@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+wlan() {
+	case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
+	up) printf "^c$blue^󰤨^d^%s" ;;
+	down) printf "^c$blue^󰤭^d^%s" ;;
+	esac
+}
+
+echo "$(wlan)"

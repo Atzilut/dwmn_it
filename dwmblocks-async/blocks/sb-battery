@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+battery() {
+  bat_state=$(upower -i `upower -e | grep 'BAT'` | grep state: | awk '{print $2}')
+  bat_val="$(cat /sys/class/power_supply/BAT1/capacity)"
+
+  if [ $bat_state = "fully-charged" ]; then
+    printf "^c$green^󰠠"
+  elif [ $bat_state = "discharging" ]; then
+    if (( $bat_val <= 20 )); then
+      printf "^c$red^$bat_val"
+    elif (( $bat_val > 20 )) && (( $bat_val <= 50 )); then
+      printf "^c$orange^$bat_val"
+    elif (( $bat_val > 50 && $bat_val <= 75)); then
+      printf "^c$yellow^$bat_val"
+    elif (($bat_val > 75 && $bat_val < 90)); then
+      printf "^c$green^$bat_val"
+    else 
+      printf "^c$blue^$bat_val"
+    fi
+  elif [ $bat_state = "charging" ]; then
+    printf "^c$green^$bat_val"
+
+  else
+    printf "^c$white^unknown battery status" 
+  fi
+}
+
+echo "$(battery)"

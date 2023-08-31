@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# load colors
+. ~/.config/dwmn_it/scripts/bar_themes/nord
+
+cpu() {
+  cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
+
+  if [[ $cpu_val > 2.5 ]]; then
+    printf "^c$red^"
+    printf "^c$red^$cpu_val"
+  elif [[ $cpu_val > 1.75 ]] && [[ $cpu_val < 2.5 ]]; then
+    printf "^c$orange^"
+    printf "^c$orange^$cpu_val"
+  elif [[  $cpu_val > 1.0 ]] && [[ $cpu_val < 1.75  ]]; then
+    printf "^c$yellow^"
+    printf "^c$yellow^$cpu_val"
+  else 
+    printf "^c$green^"
+    printf "^c$green^$cpu_val"
+  fi
+}
+
+echo "$(cpu)"
