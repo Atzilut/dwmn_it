@@ -1,0 +1,6 @@
+dwmn_it/dwm 
+dwmn_it/config.h 
+dwmn_it/*.o
+dwmn_it/*.orig
+dwmn_it/*.rej
+.ccls-cache/
